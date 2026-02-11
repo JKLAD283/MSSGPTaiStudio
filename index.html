@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+  <head>
+    <title>MSSGPT AI STUDIO</title>
+  </head>
+  <body>
+    <h1>MSSGPT AI STUDIO</h1>
+    <p>Build your AI apps!</p>
+    <h1>Welcome to MSSGPT AI STUDIO!</h1>
+    <p>Login in/Sign in</p>
+    <textarea>Please enter your E-mail...</textarea>
+    <textarea>Please enter your new password/password</textarea>
+    <button>Sign in/Login in</button>
+    <script>
+      // Sayfadaki tüm buton elemanlarını seçiyoruz
+const butonlar = document.querySelectorAll('button');
+
+// Her bir buton için döngü oluşturuyoruz
+butonlar.forEach(buton => {
+    buton.addEventListener('click', () => {
+        // Tıklandığında hedef dosyaya yönlendiriyoruz
+        window.location.href = 'apikey.html';
+    });
+});
+    </script>
+  </body>
+</html>
