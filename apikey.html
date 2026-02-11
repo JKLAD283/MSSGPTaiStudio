@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>MSSGPT AI Studio</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #eef2f7; display: flex; justify-content: center; padding: 50px; }
+        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
+        button { background: #007bff; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; }
+        .key-list { margin-top: 20px; text-align: left; border-top: 1px solid #eee; padding-top: 15px; }
+        .key-item { background: #f8f9fa; padding: 8px; margin: 5px 0; border-radius: 5px; font-family: monospace; font-size: 13px; border: 1px solid #ddd; word-break: break-all; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>MSSGPT AI Studio</h2>
+    <p>Build your AI apps!</p>
+    <button onclick="generateKey()">Create new API Key</button>
+
+    <div class="key-list" id="keyList">
+        <strong>Your API keys:</strong>
+        </div>
+</div>
+
+<script>
+    // Sayfa açldnda eski anahtarlar yükle
+    window.onload = function() {
+        displayKeys();
+    };
+
+    function generateKey() {
+        // Rastgele anahtar üret
+        const newKey = "AblJlk-mssgpt-ai-" + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        
+        // Localstorage'dan mevcut listeyi al
+        let keys = JSON.parse(localStorage.getItem("mss_keys") || "[]");
+        
+        // Yeni anahtar listeye ekle ve kaydet
+        keys.push(newKey);
+        localStorage.setItem("mss_keys", JSON.stringify(keys));
+        
+        displayKeys();
+    }
+
+    function displayKeys() {
+        const listDiv = document.getElementById("keyList");
+        const keys = JSON.parse(localStorage.getItem("mss_keys") || "[]");
+        
+        // Listeyi temizle ve yeniden yaz
+        const items = keys.map(k => `<div class="key-item">${k}</div>`).join("");
+        listDiv.innerHTML = "<strong>Your API keys:</strong>" + (items || "<p>Your API keys not found.</p>");
+    }
+</script>
+
+</body>
+</html>
